@@ -25,15 +25,19 @@ class PaslonResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('ft_ketua') // Kolom untuk upload foto ketua
-                    ->image()
+                    ->disk('s3')
                     ->directory('fotoPaslon')
+                    ->visibility('public')
+                    ->image()
                     ->required(),
                 Forms\Components\TextInput::make('nm_wakil')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('ft_wakil') // Kolom untuk upload foto wakil
-                    ->image()
+                    ->disk('s3')
                     ->directory('fotoPaslon')
+                    ->visibility('public')
+                    ->image()
                     ->required(),
                 Forms\Components\TextInput::make('npm_ketua')
                     ->required()
@@ -119,7 +123,7 @@ class PaslonResource extends Resource
                         'presma' => 'Presma',
                     ])
                     ->required(),
-                    Forms\Components\TextInput::make('total_vote')
+                Forms\Components\TextInput::make('total_vote')
                     ->required()
                     ->numeric(),
             ]);
@@ -135,10 +139,12 @@ class PaslonResource extends Resource
                 Tables\Columns\TextColumn::make('nm_ketua')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('ft_ketua') // Kolom gambar ketua
+                    ->disk('s3')
                     ->label('Foto Ketua'),
                 Tables\Columns\TextColumn::make('nm_wakil')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('ft_wakil') // Kolom gambar wakil
+                    ->disk('s3')
                     ->label('Foto Wakil'),
                 Tables\Columns\TextColumn::make('npm_ketua')
                     ->sortable(),
