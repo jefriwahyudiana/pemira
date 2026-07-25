@@ -12,7 +12,7 @@
             Selamat Datang di Web Pemira Universitas Logistik dan Bisnis Internasional
           </h1>
           <p class="mt-4 text-lg text-gray-800 text-justify">
-            adalah momen penting bagi kita semua. Suara Anda adalah kekuatan untuk membentuk masa depan kampus yang lebih baik dan adil. Pilihlah dengan bijak, karena setiap suara memiliki dampak nyata.
+            mm adalah momen penting bagi kita semua. Suara Anda adalah kekuatan untuk membentuk masa depan kampus yang lebih baik dan adil. Pilihlah dengan bijak, karena setiap suara memiliki dampak nyata.
           </p>
           <div class="mt-6">
             <a href="/login" class="bg-blue-900 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-700">Ayo Voting</a>
