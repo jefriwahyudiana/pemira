@@ -38,6 +38,6 @@
         @yield('content')
     </main>
     @livewireScripts <!-- Tambahkan ini untuk Livewire -->
-    @vite('resources/js/app.js') <!-- Pastikan ini ada untuk Vite -->
+    {{-- @vite('resources/js/app.js') <!-- Pastikan ini ada untuk Vite --> --}}
 </body>
 </html>
