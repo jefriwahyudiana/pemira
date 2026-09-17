@@ -29,6 +29,9 @@ class MenuVoteController extends Controller
         // Kirim prodi ke view
         return view('menu_vote', [
             'prodi' => $prodi,
+            'nama' => Session::get('nama'),
+            'npm' => $npmPemilih,
+            'jenis_pemilihan' => Session::get('jenis_pemilihan'),
             'pml_presma' => $pemilih->pml_presma ?? 0,
             'pml_hima' => $pemilih->pml_hima ?? 0,
         ])->with('title', 'Prodi ' . $prodi);

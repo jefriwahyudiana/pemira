@@ -21,6 +21,7 @@ class Pemilih extends Model
         'pml_presma', 
         'pml_hima', 
         'jenis_pemilihan',
+        'sudah_login',
     ];
 
     // Tipe data bawaan untuk casting atribut tertentu
@@ -28,6 +29,7 @@ class Pemilih extends Model
         'total_vote' => 'integer',
         'pml_presma' => 'integer',
         'pml_hima' => 'integer',
+        'sudah_login' => 'boolean',
     ];
 
     // Relasi ke model Paslon (opsional, tambahkan jika ada hubungan antar tabel)
