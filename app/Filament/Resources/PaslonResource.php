@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PaslonResource\Pages;
 use App\Models\Paslon;
 use Filament\Forms;
+use Filament\Forms\Components\BaseFileUpload;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Illuminate\Support\Facades\Storage;
 
 class PaslonResource extends Resource
 {
@@ -117,8 +119,24 @@ class PaslonResource extends Resource
                             ->directory('fotoPaslon')
                             ->visibility('public')
                             ->image()
-                            ->imageEditor()
-                            ->required(),
+                            ->maxSize(1024 * 4)
+                            ->required()
+                            // URL relatif agar preview tidak diblokir CORS saat admin
+                            // diakses via host berbeda (localhost vs 127.0.0.1)
+                            ->getUploadedFileUsing(function (BaseFileUpload $component, string $file, string|array|null $storedFileNames): ?array {
+                                $disk = Storage::disk('public');
+
+                                if (! $disk->exists($file)) {
+                                    return null;
+                                }
+
+                                return [
+                                    'name' => $storedFileNames ?? basename($file),
+                                    'size' => $disk->size($file),
+                                    'type' => $disk->mimeType($file),
+                                    'url' => '/storage/' . ltrim($file, '/'),
+                                ];
+                            }),
                     ]),
 
                 Forms\Components\Section::make('Data Wakil')
@@ -156,8 +174,24 @@ class PaslonResource extends Resource
                             ->directory('fotoPaslon')
                             ->visibility('public')
                             ->image()
-                            ->imageEditor()
-                            ->required(),
+                            ->maxSize(1024 * 4)
+                            ->required()
+                            // URL relatif agar preview tidak diblokir CORS saat admin
+                            // diakses via host berbeda (localhost vs 127.0.0.1)
+                            ->getUploadedFileUsing(function (BaseFileUpload $component, string $file, string|array|null $storedFileNames): ?array {
+                                $disk = Storage::disk('public');
+
+                                if (! $disk->exists($file)) {
+                                    return null;
+                                }
+
+                                return [
+                                    'name' => $storedFileNames ?? basename($file),
+                                    'size' => $disk->size($file),
+                                    'type' => $disk->mimeType($file),
+                                    'url' => '/storage/' . ltrim($file, '/'),
+                                ];
+                            }),
                     ]),
 
                 Forms\Components\Section::make('Visi & Misi')
@@ -190,7 +224,7 @@ class PaslonResource extends Resource
                     ->circular(),
                 Tables\Columns\TextColumn::make('nm_ketua')
                     ->label('Pasangan')
-                    ->description(fn ($record): string => $record->nm_wakil)
+                    ->description(fn ($record): string => $record->nm_wakil ?? 'Calon tunggal')
                     ->searchable(['nm_ketua', 'nm_wakil']),
                 Tables\Columns\TextColumn::make('jenis_pemilihan')
                     ->label('Pemilihan')

@@ -8,7 +8,7 @@
             <img src="{{ asset('images/pemira.png') }}" alt="Logo Pemira" class="w-11 h-11 rounded-full object-cover bg-blue-950 shadow">
             <span class="font-extrabold tracking-widest text-sm md:text-base text-blue-950">PEMIRA 2025</span>
         </a>
-        <a href="/login" class="text-sm font-bold bg-blue-950 text-white px-5 py-2.5 rounded-full shadow hover:bg-blue-800 transition">Masuk</a>
+        <a href="/admin" class="text-sm font-bold bg-blue-950 text-white px-5 py-2.5 rounded-full shadow hover:bg-blue-800 transition">Masuk</a>
     </nav>
 
     {{-- Hero --}}
